@@ -1,0 +1,63 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define LEN sizeof(struct student)
+#define de struct student
+struct student
+{
+	int num;
+	struct student *next;
+};
+int n;
+struct student *creat(void)
+{
+	struct student *head;
+	struct student *p1,*p2;
+	n=0;
+	p1=p2=(struct student *)malloc(LEN);
+	scanf("%d",&p1->num);
+	head=NULL;
+	while(p1->num!=0)
+	{
+		n++;
+		if(n==1)head=p1;
+		else p2->next=p1;
+		p2=p1;
+		p1=malloc(LEN);
+		scanf("%d",&p1->num);
+	}
+	p2->next=NULL;
+	return head;
+}
+void list_reverse(struct student *l)
+{
+	struct student *p=l->next;
+	struct student *q=l->next;
+	while(p)
+	{    
+		struct student *t=p->next;
+		struct student *tt=l->next;
+		l->next=p;
+		p->next=tt;
+		p=t;
+	}
+	if(q) q->next=NULL;
+}
+void list_print(struct student *p)
+{
+	do
+	{
+		printf("%d ",p->num);
+		p=p->next;
+	}while(p!=NULL);
+	printf("\n");
+}
+int main()
+{
+	struct student *p;
+	p=creat();
+	list_print(p);
+	list_reverse(p);
+	list_print(p);
+}
+	
+	
