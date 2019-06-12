@@ -1,0 +1,14 @@
+#include<stdio.h>
+int main(void)
+{
+    FILE *p;
+    char i;
+    p = fopen("D:\\a.txt", "r");       //前提是你要在你的工作目录里有一个有内容的a.txt文件，自己创建一下吧，写两句（不要整汉语哈）。
+    while(!feof(p))
+    {
+        i=fgetc(p);
+        printf("%c %d ",i,i);      //输出每个字符的ascll码
+    }
+    fclose(p);        //关闭文件，释放指针
+    return 0;
+}
