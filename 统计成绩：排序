@@ -1,0 +1,34 @@
+#include<stdio.h>
+#include<string.h>
+struct student         //定义一个结构体数据 
+{
+	char name[8];
+	int score;
+};
+void sort_list(int a,struct student *student)   //定义一个排序的函数 
+{
+	int i,j,b;
+	struct student d;   //用作交换 
+	for(i=0;i<a;i++)
+		for(j=0;j<a-1-i;j++)
+		{
+			if(student[j].score<student[j+1].score)     //判断并按成绩排序 
+				d=student[j+1];
+				student[j+1]=student[j];
+				student[j]=d;
+		}
+	for(i=0;i<a;i++)
+	{
+		printf("%d  %s  %d   ",i+1,student[i].name,student[i].score);
+	}
+}
+int a=4;
+main()
+{
+	int b,i;
+	printf("please input the names and scores:");
+	struct student student[a];
+	for(i=0;i<a;i++)
+		scanf("%s%d",&student[i].name,&student[i].score);   //从键盘中读入数据记录到结构体中 
+	sort_list(a,student);
+ } 
